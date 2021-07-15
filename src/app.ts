@@ -1,11 +1,19 @@
 import express from 'express';
-import {SERVER_CONFIG} from './util/config'
+
+//CONFIG
+import {server_config, database_config} from './util/config';
+
+
+//DATABASE
+import { database_connect } from './models/db'
 
 const app = express();
 const env = process.env;
-const port = Number(SERVER_CONFIG.SERVER_PORT);
-const host = SERVER_CONFIG.SERVER_HOST
+const { server_host, server_port } = server_config;
 
-app.listen(port, '' + host,()=>{
-    console.log(`Server listening to: ${host}:${port}`)
+
+app.listen(Number(server_port), '' + server_host,()=>{
+    console.log(`Server listening to ${server_host} port: ${server_port}`);
+    database_connect();
+   
 } )
