@@ -1,14 +1,9 @@
 import {DataTypes as type} from 'sequelize';
 import {sequelize} from './db'
 
-export class Books { 
-    constructor(){
-        this.create_table()
-    }
-    
-    private create_table(){
+
         
-        const table = sequelize.define('livros',{            
+       export const books = sequelize.define('livros',{            
             titulo:{
                 type: type.STRING,
                 allowNull: false
@@ -23,8 +18,4 @@ export class Books {
             }
         });
 
-        table.sync({force: true})
-    }
-
-
-}
+        
