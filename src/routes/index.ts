@@ -1,16 +1,11 @@
-import { Router, Request, Response } from "express";
-import { readBuilderProgram } from "typescript";
+import { Router } from "express";
+import {Posts} from '../controllers/postController'
 
-
+const post = new Posts()
 
 export const router = Router();
 
-function vai(req: Request,res: Response){
-    return res.render('forms')
-}
 
-router.route('/').get(vai)
-router.route('/add').post((req: Request, res:Response)=>{
-    console.log(req)
-    return res.status(200).send('chegou')
-})
+router.route('/').get(post.showPage)
+router.route('/posts').get(post.showPosts)
+router.route('/add').post(post.create)
